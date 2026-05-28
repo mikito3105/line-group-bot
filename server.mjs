@@ -34,7 +34,10 @@ app.post("/webhook", middleware(config), async (req, res) => {
   res.status(200).json({ status: "ok" });
 
   const events = req.body.events || [];
+  console.log(`[webhook] イベント数: ${events.length}`);
+
   for (const event of events) {
+    console.log(`[event] type=${event.type} source=${event.source?.type} groupId=${event.source?.groupId || "-"}`);
     try {
       await handleEvent(event);
     } catch (err) {
