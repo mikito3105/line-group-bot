@@ -8,10 +8,11 @@ import express from "express";
 import { messagingApi, middleware } from "@line/bot-sdk";
 import dotenv from "dotenv";
 import { join, dirname } from "path";
+import { fileURLToPath } from "url";
 import { generateReply } from "./lib/ai.mjs";
 import { fetchSystemPrompt, fetchKnowledge, fetchHistory, appendHistory } from "./lib/sheets.mjs";
 
-const PROJECT_ROOT = dirname(import.meta.url.replace("file://", ""));
+const PROJECT_ROOT = dirname(fileURLToPath(import.meta.url));
 dotenv.config({ path: join(PROJECT_ROOT, ".env") });
 
 const config = {
